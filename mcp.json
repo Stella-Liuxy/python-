@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "classroom": {"command": "$python", "args": ["mcp_servers/classroom.py"]}
+  }
+}
