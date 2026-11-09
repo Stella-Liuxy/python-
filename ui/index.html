@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>CursorLab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark">&gt;_</span><span>CursorLab <small>桌面代码助手</small></span></div>
+    <div class="top-actions">
+      <span id="mode-badge" class="badge">离线练习</span>
+      <button id="settings" type="button">模型设置</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="files">
+      <div class="panel-label">工作区</div>
+      <button id="pick">选择文件夹</button>
+      <div id="workspace" class="location">读取中…</div>
+      <div id="file-list" aria-label="文件列表"></div>
+    </aside>
+    <section class="preview">
+      <div class="panel-label"><span>文件预览</span><span id="file-meta"></span></div>
+      <div class="file-tab" id="file-tab">请选择文件</div>
+      <pre id="file-content"></pre>
+      <div class="pagination">
+        <button id="prev" disabled>上一页</button>
+        <button id="next" disabled>下一页</button>
+      </div>
+    </section>
+    <section class="conversation">
+      <div class="panel-label">
+        <span>对话与工具</span><button id="fresh">新会话</button>
+      </div>
+      <div class="runbar" aria-label="离线练习">
+        <button data-demo="mean">修复样例</button>
+        <button data-demo="mcp">MCP 查询</button>
+        <button data-demo="stop">中断练习</button>
+      </div>
+      <div id="events" aria-live="polite">
+        <div class="welcome">
+          <p class="eyebrow">工作台</p>
+          <h1>从一个文件开始</h1>
+          <p>配置模型后可处理自己的代码。也可以先运行离线样例，观察文件读取、失败恢复、差异和测试结果。</p>
+        </div>
+      </div>
+      <div class="composer">
+        <textarea id="prompt" rows="2" maxlength="6000" placeholder="描述你的编程任务。Ctrl + Enter 发送。"></textarea>
+        <div class="composer-actions"><span id="status" role="status">就绪</span>
+          <button id="stop" disabled>中断</button><button class="primary" id="send">发送</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="settings-dialog">
+    <form id="settings-form">
+      <h2>模型设置</h2>
+      <p>填写兼容 Chat Completions 且支持工具调用的接口。API Key 仅在当前进程内使用。</p>
+      <label>API 基础地址<input id="base-url" value="https://api.openai.com/v1" type="url" required></label>
+      <label>模型名称<input id="model-name" placeholder="服务商提供的模型 ID" required></label>
+      <label>API Key<input id="api-key" type="password" autocomplete="off" required></label>
+      <label class="checkbox"><input id="mcp-enabled" type="checkbox" checked>连接配置中的 MCP Server</label>
+      <div class="dialog-actions"><button type="button" id="close-settings">返回</button>
+        <button class="primary" type="submit">应用设置</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
+
